@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Dr. Aakansha ❤️</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+/* Floating Hearts */
+.heart{
+    position:absolute;
+    font-size:20px;
+    animation:floatUp linear forwards;
+    pointer-events:none;
+}
+
+@keyframes floatUp{
+    from{transform:translateY(100vh) scale(0.5); opacity:0}
+    20%{opacity:1}
+    to{transform:translateY(-10vh) scale(1.4); opacity:0}
+}
+
+/* Funny Shake */
+@keyframes funnyShake{
+    0%{transform:translateX(0)}
+    25%{transform:translateX(-6px)}
+    50%{transform:translateX(6px)}
+    75%{transform:translateX(-4px)}
+    100%{transform:translateX(0)}
+}
+
+/* Bounce */
+@keyframes bounceIn{
+    0%{transform:scale(0.5); opacity:0}
+    60%{transform:scale(1.1)}
+    100%{transform:scale(1); opacity:1}
+}
+
+.card{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+    padding:40px;
+    width:90%;
+    max-width:600px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+    animation:bounceIn 1.2s ease;
+}
+
+h1{
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.typewriter{
+    font-size:18px;
+    min-height:60px;
+    margin-bottom:25px;
+}
+
+button{
+    padding:12px 25px;
+    margin:10px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.btn-primary{
+    background:white;
+    color:#ff4f81;
+}
+
+.btn-primary:hover{
+    transform:scale(1.1) rotate(-2deg);
+}
+
+.btn-secondary{
+    background:#ff4f81;
+    color:white;
+}
+
+.btn-secondary:hover{
+    transform:scale(1.1) rotate(2deg);
+}
+
+/* Popup */
+.popup{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    background:white;
+    color:#ff4f81;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    transition:0.4s ease;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.popup.active{
+    transform:translate(-50%,-50%) scale(1);
+}
+
+.popup button{
+    background:#ff4f81;
+    color:white;
+    margin-top:15px;
+}
+
+/* Music Button */
+.music-btn{
+    position:absolute;
+    top:20px;
+    right:20px;
+    background:white;
+    color:#ff4f81;
+    border-radius:50%;
+    width:45px;
+    height:45px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.music-btn:hover{
+    transform:rotate(20deg) scale(1.1);
+}
+
+/* Emoji rain */
+.emoji{
+    position:absolute;
+    font-size:22px;
+    animation:emojiFall linear forwards;
+}
+
+@keyframes emojiFall{
+    from{transform:translateY(-10vh); opacity:1}
+    to{transform:translateY(110vh); opacity:0}
+}
+
+</style>
+</head>
+<body>
+
+<div class="music-btn" onclick="toggleMusic()">🎵</div>
+
+<div class="card" id="card">
+    <h1 id="title">Hey Dr. Aakansha ❤️</h1>
+    <div class="typewriter" id="message"></div>
+
+    <button class="btn-primary" onclick="sendHug()">Click for Hug 🤗</button>
+    <button class="btn-secondary" onclick="surprise()">Surprise 💖</button>
+</div>
+
+<div class="popup" id="popup">
+    <h2>You Are Stronger Than Cramps 💪❤️</h2>
+    <p>I know you're not feeling your best… but you are my favorite human always.</p>
+    <p style="margin-top:10px;">Doctor by profession. Drama queen during periods. Still my queen 👑😂</p>
+    <button onclick="closePopup()">Close</button>
+</div>
+
+<audio id="bgMusic" loop>
+<source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mpeg">
+</audio>
+
+<script>
+const text = "Okay listen… If cramps were a patient, you would already cure them. 😎 But since you can't prescribe yourself, I prescribe: Chocolate, Rest & Unlimited Cuddles 💖";
+let i = 0;
+
+function typeWriter(){
+    if(i < text.length){
+        document.getElementById("message").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter,35);
+    }
+}
+typeWriter();
+
+// Floating hearts
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=Math.random()*5+5+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),8000);
+}
+setInterval(createHeart,400);
+
+// Emoji Rain
+function emojiRain(){
+    const emojiList=["😂","🍫","💖","🤗","👑","🌸"];
+    const emoji=document.createElement("div");
+    emoji.classList.add("emoji");
+    emoji.innerHTML=emojiList[Math.floor(Math.random()*emojiList.length)];
+    emoji.style.left=Math.random()*100+"vw";
+    emoji.style.animationDuration=Math.random()*3+3+"s";
+    document.body.appendChild(emoji);
+    setTimeout(()=>emoji.remove(),6000);
+}
+
+// Hug Button
+function sendHug(){
+    document.getElementById("card").style.animation="funnyShake 0.5s";
+    for(let i=0;i<20;i++){
+        setTimeout(emojiRain,i*100);
+    }
+    setTimeout(()=>{
+        document.getElementById("card").style.animation="";
+    },500);
+}
+
+// Popup
+function surprise(){
+    document.getElementById("popup").classList.add("active");
+}
+
+function closePopup(){
+    document.getElementById("popup").classList.remove("active");
+}
+
+// Music
+function toggleMusic(){
+    const music=document.getElementById("bgMusic");
+    if(music.paused){
+        music.play();
+    }else{
+        music.pause();
+    }
+}
+</script>
+
+
+<style>
+.splash-screen{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:9999;
+    transition:1s ease;
+}
+.splash-logo{
+    font-size:28px;
+    font-weight:600;
+    color:white;
+    animation:fadeIn 2s ease;
+}
+.splash-heart{
+    font-size:40px;
+    margin-top:15px;
+    animation:pulse 1.5s infinite;
+}
+@keyframes fadeIn{
+    from{opacity:0}
+    to{opacity:1}
+}
+@keyframes pulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.2)}
+    100%{transform:scale(1)}
+}
+</style>
+
+<div class="splash-screen" id="splash">
+    <div class="splash-logo">For Aakansha 🤍</div>
+    <div class="splash-heart">💓</div>
+</div>
+
+<script>
+window.addEventListener("load", function(){
+    setTimeout(function(){
+        document.getElementById("splash").style.opacity="0";
+        setTimeout(function(){
+            document.getElementById("splash").style.display="none";
+        },1000);
+    },2000);
+});
+</script>
+
+</body>
+</html>
